@@ -1,0 +1,181 @@
+//@version=5
+indicator(shorttitle="CZ", title="Confluence Zone", overlay=true)
+length = input.int(86, minval=1)
+maType = input.string("EMA", "Basis MA Type", options = ["SMA", "EMA", "SMMA (RMA)", "WMA", "VWMA"])
+src = input(hlc3, title="Source")
+mult = input.float(2.0, minval=0.001, maxval=50, title="StdDev")
+
+ma(source, length, _type) =>
+    switch _type
+        "SMA" => ta.sma(source, length)
+        "EMA" => ta.ema(source, length)
+        "SMMA (RMA)" => ta.rma(source, length)
+        "WMA" => ta.wma(source, length)
+        "VWMA" => ta.vwma(source, length)
+
+basis = ma(src, length, maType)
+
+signalMA = ta.ema(src, 1)
+// plot(signalMA)
+
+dev1 = 0.382 * ta.stdev(src, length)
+dev2 = 0.618 * ta.stdev(src, length)
+dev3 = 0.786 * ta.stdev(src, length)
+dev4 = 1 * ta.stdev(src, length)
+dev5 = 1.382 * ta.stdev(src, length)
+dev6 = 1.618 * ta.stdev(src, length)
+dev7 = 2 * ta.stdev(src, length)
+dev8 = 2.382 * ta.stdev(src, length)
+dev9 = 2.618 * ta.stdev(src, length)
+dev10 = 3 * ta.stdev(src, length)
+// dev11 = 3.382 * ta.stdev(src, length)
+// dev12 = 3.618 * ta.stdev(src, length)
+// dev13 = 4 * ta.stdev(src, length)
+// dev14 = 4.382 * ta.stdev(src, length)
+
+
+
+upper1 = basis + dev1
+lower1 = basis - dev1
+upper2 = basis + dev2
+lower2 = basis - dev2
+upper3 = basis + dev3
+lower3 = basis - dev3
+upper4 = basis + dev4
+lower4 = basis - dev4
+upper5 = basis + dev5
+lower5 = basis - dev5
+upper6 = basis + dev6
+lower6 = basis - dev6
+upper7 = basis + dev7
+lower7 = basis - dev7
+upper8 = basis + dev8
+lower8 = basis - dev8
+upper9 = basis + dev9
+lower9 = basis - dev9
+upper10 = basis + dev10
+lower10 = basis - dev10
+// upper11 = basis + dev11
+// lower11 = basis - dev11
+// upper12 = basis + dev12
+// lower12 = basis - dev12
+// upper13 = basis + dev13
+// lower13 = basis - dev13
+// upper14 = basis + dev14
+// lower14 = basis - dev14
+
+offset = input.int(0, "Offset", minval = -500, maxval = 500)
+// plot(basis, "Basis", color=#FF6D00, offset = offset)
+// p1 = plot(upper1, "Upper", color=#2962FF, offset = offset)
+// p2 = plot(lower1, "Lower", color=#2962FF, offset = offset)
+// fill(p1, p2, title = "Background", color=color.rgb(33, 150, 243, 100))
+
+// p12 = plot(upper2, "Upper", color=#2962FF, offset = offset)
+// p22 = plot(lower2, "Lower", color=#2962FF, offset = offset)
+// fill(p12, p22, title = "Background", color=color.rgb(33, 150, 243, 100))
+
+// p13 = plot(upper3, "Upper", color=#29ffff, offset = offset)
+// p23 = plot(lower3, "Lower", color=#29ffff, offset = offset)
+// fill(p13, p23, title = "Background", color=color.rgb(33, 149, 243, 100))
+
+// p14 = plot(upper4, "Upper", color=#2962FF, offset = offset)
+// p24 = plot(lower4, "Lower", color=#2962FF, offset = offset)
+// fill(p14, p24, title = "Background", color=color.rgb(33, 150, 243, 100))
+
+// p15 = plot(upper5, "Upper", color=#ff29fb, offset = offset)
+// p25 = plot(lower5, "Lower", color=#ff29f4, offset = offset)
+// fill(p15, p25, title = "Background", color=color.rgb(33, 150, 243, 100))
+
+// p16 = plot(upper6, "Upper", color=#fffb29, offset = offset)
+// p26 = plot(lower6, "Lower", color=#fffb29, offset = offset)
+// fill(p16, p26, title = "Background", color=color.rgb(33, 150, 243, 100))
+
+// p17 = plot(upper7, "Upper", color=#2962FF, offset = offset)
+// p27 = plot(lower7, "Lower", color=#2962FF, offset = offset)
+// fill(p17, p27, title = "Background", color=color.rgb(33, 150, 243, 100))
+
+// p18 = plot(upper8, "Upper", color=#2962FF, offset = offset)
+// p28 = plot(lower8, "Lower", color=#2962FF, offset = offset)
+// fill(p18, p28, title = "Background", color=color.rgb(33, 150, 243, 100))
+
+// p19 = plot(upper9, "Upper", color=#ff2929, offset = offset)
+// p29 = plot(lower9, "Lower", color=#ff3029, offset = offset)
+// fill(p19, p29, title = "Background", color=color.rgb(33, 150, 243, 100))
+
+// p110 = plot(upper10, "Upper", color=#ffd829, offset = offset)
+// p210 = plot(lower10, "Lower", color=#ffd829, offset = offset)
+// fill(p110, p210, title = "Background", color=color.rgb(33, 149, 243, 100))
+
+// p111 = plot(upper11, "Upper", color=#2962FF, offset = offset)
+// p211 = plot(lower11, "Lower", color=#2962FF, offset = offset)
+// fill(p111, p211, title = "Background", color=color.rgb(33, 150, 243, 95))
+
+// p112 = plot(upper12, "Upper", color=#2962FF, offset = offset)
+// p212 = plot(lower12, "Lower", color=#2962FF, offset = offset)
+// fill(p112, p212, title = "Background", color=color.rgb(33, 150, 243, 95))
+
+// p113 = plot(upper13, "Upper", color=#2962FF, offset = offset)
+// p213 = plot(lower13, "Lower", color=#2962FF, offset = offset)
+// fill(p113, p213, title = "Background", color=color.rgb(33, 150, 243, 95))
+
+// p114 = plot(upper14, "Upper", color=#2962FF, offset = offset)
+// p214 = plot(lower14, "Lower", color=#2962FF, offset = offset)
+// fill(p114, p214, title = "Background", color=color.rgb(33, 150, 243, 95))
+
+//Core BackEnd
+var float  x = 0
+var float newSup = 0
+var float newRes = 0
+
+if(lower6 > x)
+    x :=  lower5
+    newSup := x - dev5
+    newRes := x + dev5
+else if (upper6 < x)
+    x := upper5
+    newSup := x - dev5
+    newRes := x + dev5
+
+
+plot(x, color = color.new(color.black,50))
+plot(newSup, color = color.new(color.black,50))
+plot(newRes, color = color.new(color.black,50))
+
+srLinesOn = true
+var float myTrend = na
+var float myTrend2 = na
+var float myTrendx = na
+trendColor = color.new(color.white,0)
+
+if(newRes[2] < close[1] and close[1] < close)
+    myTrend :=  newSup
+	myTrend2 :=  newRes
+	myTrendx :=  x
+	trendColor := color.new(color.green,90) 
+
+else if (newSup[2] > close[1] and close[1] > close) 
+    myTrend :=  newRes
+	myTrend2 :=  newSup
+	myTrendx :=  x
+	trendColor := color.new(color.red,90)
+
+upTrend =    plot(myTrendx, "Up Trend",  myTrendx > myTrend? color.new(#02ff0a, 40):na , style = plot.style_linebr, linewidth = 2)
+downTrend =  plot(myTrendx, "Down Trend", myTrendx < myTrend? color.new(color.red, 40):na,   style = plot.style_linebr, linewidth = 2)
+// upTrend2 =    plot(myTrend2, "Up Trend",  srLinesOn? myTrendx > myTrend2? color.new(color.green, 40):na :na, style = plot.style_linebr)
+// downTrend2 =  plot(myTrend2, "Down Trend", srLinesOn? myTrendx < myTrend2? color.new(color.red, 40):na :na,   style = plot.style_linebr)
+// bodyMiddle = plot(barstate.isfirst ? na : myTrendx, "Body Middle",style = plot.style_linebr, color = color.black)
+
+// if(myTrend > myTrend2)
+// 	trendColor := color.new(color.red,90)
+
+// else if (myTrend < myTrend2)
+// 	trendColor := color.new(color.green,90)
+
+// fill(bodyMiddle, upTrend,  trendColor, fillgaps = false)
+// fill(bodyMiddle, downTrend,trendColor, fillgaps = false)
+
+greenCandle = open < close
+redCandle = open > close
+
+plotshape(signalMA > upper5 and close > upper6 and close[1] < upper10[1] and greenCandle[1] and redCandle , "sell",shape.labeldown,location.abovebar ,color.red)
+plotshape(signalMA < lower5 and close < lower6 and close[1] > lower10[1] and redCandle[1] and greenCandle , "Buy",shape.labelup,location.belowbar ,color.green)
